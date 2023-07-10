@@ -1,7 +1,7 @@
 ---
 hero:
   title: library
-  description: react-json-to-table
+  description: react-json-to-table-pro
   actions:
     - text: Hello
       link: /
@@ -19,4 +19,4 @@ features:
     description: Put ! description here
 ---
 
-react-json-to-table
+react-json-to-table-pro

@@ -8,8 +8,8 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "react-json-to-table": ["src"],
-      "react-json-to-table/*": ["src/*", "*"]
+      "react-json-to-table-pro": ["src"],
+      "react-json-to-table-pro/*": ["src/*", "*"]
     }
   },
   "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"]

@@ -1,1 +1,1 @@
-export { default as JsonToTable } from './JsonToTable';
+export { default as JsonToTablePro } from './JsonToTablePro';

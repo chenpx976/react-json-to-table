@@ -20,7 +20,7 @@ const isImageUrl = (url) => {
   );
 };
 
-const JsonToTable = ({ data, isNested = false, isAbbreviated = false }) => {
+const JsonToTablePro = ({ data, isNested = false, isAbbreviated = false }) => {
   const renderTableContent = (item, index) => {
     if (typeof item === 'object' && item !== null) {
       const keys = Object.keys(item);
@@ -58,7 +58,7 @@ const JsonToTable = ({ data, isNested = false, isAbbreviated = false }) => {
                     </span>
                   </span>
                 ) : (
-                  <JsonToTable data={value} isAbbreviated={isAbbreviated} />
+                  <JsonToTablePro data={value} isAbbreviated={isAbbreviated} />
                 )}
               </td>
             ))}
@@ -102,7 +102,7 @@ const JsonToTable = ({ data, isNested = false, isAbbreviated = false }) => {
             <span>{key}</span>
           </td>
           <td>
-            <JsonToTable data={value} isAbbreviated={isAbbreviated} />
+            <JsonToTablePro data={value} isAbbreviated={isAbbreviated} />
           </td>
         </tr>
       );
@@ -145,4 +145,4 @@ const JsonToTable = ({ data, isNested = false, isAbbreviated = false }) => {
   );
 };
 
-export default JsonToTable;
+export default JsonToTablePro;
