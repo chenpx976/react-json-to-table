@@ -10,6 +10,7 @@
   font-family: @font_family_1 !important;
   font-weight: 700;
   margin: 5px;
+  transition: transform 100ms ease;
   td {
     border: thin solid #999;
     border-left: 0;
@@ -46,7 +47,7 @@
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 200px;
+  width: 400px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -74,4 +75,19 @@
   text-overflow: ellipsis;
   display: block;
   white-space: nowrap;
+}
+
+div.string-type {
+  max-width: 500px;
+  display: flex;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+div.url-type {
+  max-width: 500px;
+  display: flex;
+  word-wrap: break-word;
+  white-space: normal;
+  word-break: break-all;
 }
