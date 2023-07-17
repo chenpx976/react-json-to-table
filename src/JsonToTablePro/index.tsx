@@ -1,62 +1,70 @@
-import clsx from 'clsx';
-import React from 'react';
-import './index.less';
+import React from 'react'
+import clsx from 'clsx'
+import './index.less'
+import UrlPreview from '../UrlPreview'
+
 const typeColorMap = {
   string: 'rgb(58, 181, 74)',
   number: 'rgb(37, 170, 226)',
-  boolean: 'rgb(243, 147, 78)',
-};
+  boolean: 'rgb(243, 147, 78)'
+}
 
-const imageSuffixes = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'];
+// 检查入参是否是 url/image/number/boolean/string
+const checkStringType = (data) => {
+  const type = typeof data
+  if (type !== 'string') {
+    return type
+  }
+  if (data.includes('http')) {
+    return 'url'
+  }
+  return 'string'
+}
 
-const isImageUrl = (url) => {
-  const path = url.split('/');
-  const imageName = path[path.length - 1];
-  const imageSuffix = imageName.split('.').pop();
+const BasicType = ({ value, isAbbreviated }) => {
+  const stringType = checkStringType(value)
+  if (stringType === 'url') {
+    return (
+      <div className={clsx('tooltip')}>
+        <UrlPreview url={value} />
+      </div>
+    )
+  }
   return (
-    imageSuffixes.includes(imageSuffix.toLowerCase()) ||
-    url.includes('/img/') ||
-    url.includes('hinetmng')
-  );
-};
+    <div
+      className={clsx('basic-type', `${stringType}-type`, { abbreviated: isAbbreviated })}
+      style={{ color: typeColorMap[stringType] }}
+    >
+      {value !== null && value !== undefined ? value.toString() : ''}
+    </div>
+  )
+}
 
 const JsonToTablePro = ({ data, isNested = false, isAbbreviated = false }) => {
+
   const renderTableContent = (item, index) => {
     if (typeof item === 'object' && item !== null) {
-      const keys = Object.keys(item);
+      const keys = Object.keys(item)
       return (
         <React.Fragment key={index}>
-          <tr>
+          <tr className="object-type">
             <th>
-              <span>#</span>
+              <div>#</div>
             </th>
             {keys.map((key) => (
               <th key={key}>
-                <span>{key}</span>
+                <div>{key}</div>
               </th>
             ))}
           </tr>
-          <tr>
+          <tr className="object-type">
             <td>
-              <span style={{ color: 'rgb(37, 170, 226)' }}>{index + 1}</span>
+              <BasicType value={index + 1} isAbbreviated={isAbbreviated} />
             </td>
             {Object.entries(item).map(([key, value], i) => (
               <td key={i}>
-                {typeof value === 'string' && isImageUrl(value) ? (
-                  <span
-                    className={clsx('tooltip', { abbreviated: isAbbreviated })}
-                  >
-                    <span style={{ color: typeColorMap[typeof value] }}>
-                      {value}
-                    </span>
-                    <span className="tooltiptext">
-                      <img
-                        src={value}
-                        alt={value}
-                        style={{ maxWidth: '200px' }}
-                      />
-                    </span>
-                  </span>
+                {typeof value === 'string' ? (
+                  <BasicType value={value} isAbbreviated={isAbbreviated} />
                 ) : (
                   <JsonToTablePro data={value} isAbbreviated={isAbbreviated} />
                 )}
@@ -64,85 +72,67 @@ const JsonToTablePro = ({ data, isNested = false, isAbbreviated = false }) => {
             ))}
           </tr>
         </React.Fragment>
-      );
+      )
     } else if (['string', 'number', 'boolean'].includes(typeof item)) {
-      return (
-        <span
-          className={clsx({ abbreviated: isAbbreviated })}
-          style={{ color: typeColorMap[typeof item] }}
-        >
-          {item.toString()}
-        </span>
-      );
+      return <BasicType value={item} isAbbreviated={isAbbreviated} />
     }
-  };
+  }
 
   const renderKeyValue = (key, value) => {
-    const valueType = typeof value;
+    const valueType = typeof value
     if (['string', 'number', 'boolean'].includes(valueType)) {
       return (
         <tr key={key}>
           <td>
-            <span>{key}</span>
+            <div>{key}</div>
           </td>
           <td>
-            <span
-              className={clsx({ abbreviated: isAbbreviated })}
-              style={{ color: typeColorMap[valueType] }}
-            >
-              {value.toString()}
-            </span>
+            <BasicType value={value} isAbbreviated={isAbbreviated} />
           </td>
         </tr>
-      );
+      )
     } else {
       return (
-        <tr key={key}>
+        <tr key={key} className={`${Array.isArray(value) ? 'array' : 'object'}-type`}>
           <td>
-            <span>{key}</span>
+            <div>{key}</div>
           </td>
           <td>
             <JsonToTablePro data={value} isAbbreviated={isAbbreviated} />
           </td>
         </tr>
-      );
+      )
     }
-  };
+  }
 
   const renderTable = (data) => {
     if (Array.isArray(data)) {
-      return <tbody>{data.map(renderTableContent)}</tbody>;
+      return <tbody className="array-type">{data.map(renderTableContent)}</tbody>
     } else if (typeof data === 'object' && data !== null) {
       return (
-        <tbody>
-          {Object.entries(data).map(([key, value]) =>
-            renderKeyValue(key, value),
-          )}
+        <tbody className="object-type">
+          {Object.entries(data).map(([key, value]) => renderKeyValue(key, value))}
         </tbody>
-      );
+      )
     } else {
-      return (
-        <span
-          className={clsx({ abbreviated: isAbbreviated })}
-          style={{ color: typeColorMap[typeof data] || 'black' }}
-        >
-          {data}
-        </span>
-      );
+      return <BasicType value={data} isAbbreviated={isAbbreviated} />
     }
-  };
+  }
 
   return (
-    <div>
+    <>
       {typeof data === 'object' ? (
-        <table className="table-node" style={{ borderSpacing: '0' }}>
+        <table
+          className="table-node"
+          style={{ borderSpacing: '0' }}
+        >
           {renderTable(data)}
         </table>
       ) : (
         renderTable(data)
       )}
-    </div>
-  );
-};
+    </>
+  )
+}
 
-export default JsonToTablePro;
+export default JsonToTablePro
