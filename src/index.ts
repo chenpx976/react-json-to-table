@@ -1,1 +1,3 @@
-export { default as JsonToTablePro } from './JsonToTablePro';
+import JsonToTablePro from './JsonToTablePro';
+
+export default JsonToTablePro;
