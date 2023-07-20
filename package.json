@@ -40,8 +40,9 @@
     ]
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.7.1",
-    "@emotion/react": "^11.11.1",
+    "@radix-ui/colors": "^1.0.1",
+    "@radix-ui/react-popover": "latest",
+    "@radix-ui/react-tooltip": "^1.0.6",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
     "filesize": "^10.0.7",

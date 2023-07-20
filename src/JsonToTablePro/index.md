@@ -4,8 +4,8 @@ This is an example component.
 
 ```jsx
 import JsonToTablePro from 'react-json-to-table-pro';
-
+import data from './data.json';
 export default () => (
-  <JsonToTablePro data={{ a: 1, b: [1, 2, 3], c: [{ d: 1 }, { d: 2 }] }} />
+  <JsonToTablePro data={data} />
 );
 ```

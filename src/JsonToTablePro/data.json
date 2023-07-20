@@ -1,0 +1,83 @@
+{
+  "name": "OpenAI",
+  "website": "https://www.openai.com",
+  "isNonProfit": true,
+  "founded": 2015,
+  "projects": [
+    {
+      "name": "GPT-3",
+      "launched": 2020,
+      "imageUrl": "https://placehold.co/600x400?text=GPT-3"
+    },
+    {
+      "name": "Codex",
+      "launched": 2021,
+      "imageUrl": "https://placehold.co/600x400?text=Codex"
+    },
+    {
+      "name": "GPT-4",
+      "launched": 2023,
+      "imageUrl": "https://placehold.co/600x400?text=GPT-4",
+      "subProjects": [
+        {
+          "name": "GPT-4.1",
+          "imageUrl": "https://placehold.co/600x400?text=GPT-4.1"
+        },
+        {
+          "name": "GPT-4.2",
+          "imageUrl": "https://placehold.co/600x400?text=GPT-4.2"
+        }
+      ]
+    },
+    {
+      "name": "GPT-3",
+      "launched": 2020,
+      "imageUrl": "https://placehold.co/600x400?text=GPT-3"
+    },
+    {
+      "name": "Codex",
+      "launched": 2021,
+      "imageUrl": "https://placehold.co/600x400?text=Codex"
+    },
+    {
+      "name": "GPT-4",
+      "launched": 2023,
+      "imageUrl": "https://placehold.co/600x400?text=GPT-4",
+      "subProjects": [
+        {
+          "name": "GPT-4.1",
+          "imageUrl": "https://placehold.co/600x400?text=GPT-4.1"
+        },
+        {
+          "name": "GPT-4.2",
+          "imageUrl": "https://placehold.co/600x400?text=GPT-4.2"
+        }
+      ]
+    },
+    {
+      "name": "GPT-3",
+      "launched": 2020,
+      "imageUrl": "https://placehold.co/600x400?text=GPT-3"
+    },
+    {
+      "name": "Codex",
+      "launched": 2021,
+      "imageUrl": "https://placehold.co/600x400?text=Codex"
+    },
+    {
+      "name": "GPT-4",
+      "launched": 2023,
+      "imageUrl": "https://placehold.co/600x400?text=GPT-4",
+      "subProjects": [
+        {
+          "name": "GPT-4.1",
+          "imageUrl": "https://placehold.co/600x400?text=GPT-4.1"
+        },
+        {
+          "name": "GPT-4.2",
+          "imageUrl": "https://placehold.co/600x400?text=GPT-4.2"
+        }
+      ]
+    }
+  ]
+}
